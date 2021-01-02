@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %} artist {% endblock %}
+
+{% block body %}
+<h1>Artist informations</h1>
+<h2>Name: {{ artist.name }} {{ artist.surname }}</h2>
+<h2>Instrument: {{ artist.instrument }}</h2>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+    Artists
+{% endblock %}
+{% block body %}
+    {% if artists %}
+    <ul>
+        {% for artist in artists %}
+        <li>
+        <a href="{% url 'music:artist_info' artist_id=artist.id %}">{{ artist.name }} {{ artist.surname }} / {{ artist.instrument }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h2>There are no artists in database</h2>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %} add album {% endblock %}
+
+{% block body %}
+<h1>Add album</h1>
+<form method="POST">
+    {{ AlbumForm.as_p }}
+    {% csrf_token %}
+    <input type="submit" name="submit" value="Add album">
+</form>
+{% endblock %}

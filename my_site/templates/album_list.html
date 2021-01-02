@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+    Albums
+{% endblock %}
+{% block body %}
+    <h1>Album list</h1>
+    {% if albums %}
+    <ul>
+        {% for album in albums %}
+        <li>
+        <h4>{{ album.name }}</h4> by <b>{{ album.artist }}</b> rating: <b>{{ album.rating }}</b> pub_date: <b>{{ album.release_date }}</b>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h2>There are no albums in database</h2>
+    {% endif %}
+{% endblock %}

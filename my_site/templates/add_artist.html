@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %} add artist {% endblock %}
+
+{% block body %}
+<h1>Add artist</h1>
+<form method="POST">
+    {{ MusicianForm.as_p }}
+    {% csrf_token %}
+    <input type="submit" name="submit" value="Add artist">
+</form>
+{% endblock %}
