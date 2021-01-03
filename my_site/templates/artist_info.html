@@ -6,6 +6,9 @@
 <h2>Name: {{ artist.name }} {{ artist.surname }}</h2>
 <h2>Instrument: {{ artist.instrument }}</h2>
 <h2>Rating: {{ avg_rating.rating__avg }}</h2>
+<hr>
+<a href="{% url 'music:edit_artist' artist_id=artist.id %}" class="btn btn-primary">Edit</a>
+<hr>
 {% if albums %}
 <table class="table table-bordered">
     <tr>

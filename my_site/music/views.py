@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import MusicianForm, AlbumForm
 from .models import Artist, Album
 from django.db.models import Avg
@@ -18,6 +18,7 @@ def add_artist(request):
 
         if form.is_valid():
             form.save(commit=True)
+            return redirect("/")
 
     return render(request, 'add_artist.html', context=context)
 
@@ -30,6 +31,7 @@ def add_album(request):
 
         if form.is_valid():
             form.save(commit=True)
+            return redirect("/")
 
     return render(request, 'add_album.html', context=context)
 
@@ -44,3 +46,17 @@ def artist_info(request, artist_id):
     avg_rating = Album.objects.filter(artist_id=artist_id).aggregate(Avg('rating'))
     context = {'artist': artist, 'albums': albums, 'avg_rating': avg_rating}
     return render(request, 'artist_info.html', context=context)
+
+def edit_artist(request, artist_id):
+    artist_info = Artist.objects.get(pk=artist_id)
+    form = MusicianForm(instance=artist_info)
+
+    if request.method == "POST":
+        form = MusicianForm(request.POST, instance=artist_info)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect(f"/artist-info/{artist_id}/")
+
+    context = {'MusicianForm': form}
+    return render(request, 'edit_artist.html', context=context)
