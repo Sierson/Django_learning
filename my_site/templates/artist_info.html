@@ -9,6 +9,8 @@
 <hr>
 <a href="{% url 'music:edit_artist' artist_id=artist.id %}" class="btn btn-primary">Edit</a>
 <hr>
+<a href="{% url 'music:delete_artist' artist_id=artist.id %}" class="btn btn-warning">Delete artist</a>
+<hr>
 {% if albums %}
 <table class="table table-bordered">
     <tr>

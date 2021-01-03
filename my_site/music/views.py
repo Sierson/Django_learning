@@ -64,7 +64,7 @@ def edit_artist(request, artist_id):
 def edit_album(request, album_id):
     album_info = Album.objects.get(pk=album_id)
     form = AlbumForm(instance=album_info)
-    context = {'AlbumForm': form}
+    context = {'AlbumForm': form, 'album_id': album_id}
 
     if request.method == "POST":
         form = AlbumForm(request.POST, instance=album_info)
@@ -74,3 +74,12 @@ def edit_album(request, album_id):
             context.update({'success': 'True'})
     
     return render(request, 'edit_album.html', context=context)
+
+def delete_album(request, album_id):
+    Album.objects.get(pk=album_id).delete()
+    return render(request, 'delete_album.html')
+    
+def delete_artist(request, artist_id):
+    Artist.objects.get(pk=artist_id).delete()
+    return redirect("/")
+    
