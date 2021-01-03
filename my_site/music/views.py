@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import MusicianForm, AlbumForm
 from .models import Artist, Album
+from django.db.models import Avg
 
 # Create your views here.
 def home(request):
@@ -39,5 +40,7 @@ def album_list(request):
 
 def artist_info(request, artist_id):
     artist = Artist.objects.get(pk=artist_id)
-    context = {'artist': artist}
+    albums = Album.objects.filter(artist_id=artist_id)
+    avg_rating = Album.objects.filter(artist_id=artist_id).aggregate(Avg('rating'))
+    context = {'artist': artist, 'albums': albums, 'avg_rating': avg_rating}
     return render(request, 'artist_info.html', context=context)

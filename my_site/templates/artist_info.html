@@ -5,4 +5,23 @@
 <h1>Artist informations</h1>
 <h2>Name: {{ artist.name }} {{ artist.surname }}</h2>
 <h2>Instrument: {{ artist.instrument }}</h2>
+<h2>Rating: {{ avg_rating.rating__avg }}</h2>
+{% if albums %}
+<table class="table table-bordered">
+    <tr>
+        <th> Album name </th>
+        <th> Rating </th>
+        <th> Release date </th>
+    </tr>
+    {% for album in albums %}
+    <tr>
+        <td> {{ album.name }} </td>
+        <td> {{ album.rating }} </td>
+        <td> {{ album.release_date }} </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h2>There are no album in database</h2>
+{% endif %}
 {% endblock %}
