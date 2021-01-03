@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+    Edit artist
+{% endblock %}
+{% block body %}
+<h1>Edit artist</h1>
+{% if success %}
+<div class="alert alert-success">
+    Album changed succesfully
+</div>
+{% endif %}
+<form method="POST">
+    {{ AlbumForm.as_p }}
+    {% csrf_token %}
+    <input type="submit" name="submit" value="Edit album">
+</form>
+{% endblock %}

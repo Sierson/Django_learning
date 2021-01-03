@@ -60,3 +60,17 @@ def edit_artist(request, artist_id):
 
     context = {'MusicianForm': form}
     return render(request, 'edit_artist.html', context=context)
+
+def edit_album(request, album_id):
+    album_info = Album.objects.get(pk=album_id)
+    form = AlbumForm(instance=album_info)
+    context = {'AlbumForm': form}
+
+    if request.method == "POST":
+        form = AlbumForm(request.POST, instance=album_info)
+
+        if form.is_valid():
+            form.save(commit=True)
+            context.update({'success': 'True'})
+    
+    return render(request, 'edit_album.html', context=context)

@@ -18,7 +18,7 @@
     </tr>
     {% for album in albums %}
     <tr>
-        <td> {{ album.name }} </td>
+        <td> <a href="{% url 'music:edit_album' album_id=album.id %}">{{ album.name }}</a> </td>
         <td> {{ album.rating }} </td>
         <td> {{ album.release_date }} </td>
     </tr>
